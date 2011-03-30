@@ -2,6 +2,22 @@
 " side effect
 set nocompatible
 
+set rtp+=~/.vim/vundle.git/ 
+call vundle#rc()
+
+" Bundles:
+Bundle "Wombat"
+Bundle "scrooloose/nerdtree"
+Bundle "snipMate"
+Bundle "python.vim"
+"Bundle "L9"
+"Bundle "FuzzyFinder"
+"Bundle "rails.vim"
+"Bundle "ack.vim"
+"Bundle "git://git.wincent.com/command-t.git"
+" ...
+
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -15,7 +31,7 @@ set backspace=indent,eol,start  " allow backspacing over everything in insert
                                 "   mode
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
-set number          " show line numbers
+set relativenumber  " show line numbers
 set ruler           " show curent line and column of cursor
 set shiftwidth=4    " number of spaces to use for autoindenting
 set shiftround      " use multiple of shiftwidth when indenting with '<' and
@@ -135,5 +151,6 @@ let g:pydiction_location = 'C:\Program Files (x86)\Vim\vimfiles\ftplugin\pydicti
 map <F2> :NERDTreeToggle<CR>
 
 set textwidth=78 " no automatic line breaks
+
 
 " vim: set ts=4 sw=4 tw=78 expandtab :
