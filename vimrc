@@ -65,6 +65,9 @@ set directory=$temp " use system temporary directory for swap files
 
 set laststatus=2    " always show the last status bar
 
+" turn on spell checking
+set spell
+
 
 " tab completion for files/buffers works like bash
 set wildmenu
