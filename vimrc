@@ -124,7 +124,8 @@ filetype indent on
 autocmd FileType python set expandtab
 autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
 " we'll keep tabs invisible in HTML/XML files
-autocmd filetype html,xml set listchars-=tab:>.
+autocmd FileType html,xml set listchars-=tab:>.
+autocmd FileType d set expandtab
 
 
 " format the current visual selection
