@@ -114,18 +114,22 @@ if has("gui_running")
 endif
 
 
-" show whitespace characters
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 
 filetype on
 filetype plugin on
 filetype indent on
+
+
 autocmd FileType python set expandtab
+
+" show whitespace characters in python
+autocmd FileType python set list
+autocmd FileType python set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+
 autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
-" we'll keep tabs invisible in HTML/XML files
-autocmd FileType html,xml set listchars-=tab:>.
+
 autocmd FileType d set expandtab
 
 
