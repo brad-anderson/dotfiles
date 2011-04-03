@@ -155,7 +155,7 @@ nmap <silent> <leader>/ : let @/=""<CR>
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
 
-set textwidth=78 " no automatic line breaks
+set textwidth=78
 
 
 " vim: set ts=4 sw=4 tw=78 expandtab :
