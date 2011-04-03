@@ -36,7 +36,7 @@ set backspace=indent,eol,start  " allow backspacing over everything in insert
                                 "   mode
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
-set relativenumber  " show line numbers
+set number          " show line numbers
 set ruler           " show curent line and column of cursor
 set shiftwidth=4    " number of spaces to use for autoindenting
 set shiftround      " use multiple of shiftwidth when indenting with '<' and
