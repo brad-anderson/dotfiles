@@ -152,10 +152,6 @@ map <C-l> <C-w>l
 nmap <silent> <leader>/ : let @/=""<CR>
 
 
-" pydiction
-let g:pydiction_location = 'C:\Program Files (x86)\Vim\vimfiles\ftplugin\pydiction/complete-dict'
-
-
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
 
