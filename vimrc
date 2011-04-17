@@ -111,7 +111,11 @@ if has("gui_running")
     set guioptions-=T " hide toolbar
     set columns=120
     set lines=40
-    set guifont=Consolas:h9
+    if has("win32") || has("win64")
+        set guifont=Consolas:h9
+    else
+        set guifont=Consolas\ 9
+    endif
 endif
 
 
