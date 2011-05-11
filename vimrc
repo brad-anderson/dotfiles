@@ -63,7 +63,7 @@ set visualbell      " don't beep
 set noerrorbells    " don't beep
 
 set nobackup        " git is better
-set directory=$temp " use system temporary directory for swap files
+"set directory=$temp " use system temporary directory for swap files
 
 set laststatus=2    " always show the last status bar
 
