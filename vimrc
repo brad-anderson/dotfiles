@@ -1,9 +1,14 @@
 " No vi compatibility. This must be first, because it changes other options as
 " side effect
 set nocompatible
+filetype off
 
-set rtp+=~/.vim/vundle.git/ 
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
 
 " Bundles:
 Bundle "Wombat"
@@ -136,6 +141,10 @@ autocmd FileType python set listchars=tab:>.,trail:.,extends:#,nbsp:.
 autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
 
 autocmd FileType d set expandtab
+
+augroup filetype
+    au! BufRead,BufNewFile *.proto setfiletype proto
+augroup end
 
 
 " format the current visual selection
