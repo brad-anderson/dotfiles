@@ -140,6 +140,8 @@ autocmd FileType python set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
 
+autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab smartindent
+
 autocmd FileType d set expandtab
 
 augroup filetype
