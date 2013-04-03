@@ -211,7 +211,7 @@ endfunction
 vnoremap <silent> <expr> p <sid>Repl()
 
 
-set textwidth=78
+set textwidth=0
 
 
 " vim: set ts=4 sw=4 tw=78 expandtab :
