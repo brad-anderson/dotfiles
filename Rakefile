@@ -28,17 +28,17 @@ task :install do
         end
       end
     else
-      copy_file(file)
+      install_file(file)
     end
   end
 end
 
 def replace_file(file)
   FileUtils.rm_rf File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
-  copy_file(file)
+  install_file(file)
 end
 
-def copy_file(file)
+def install_file(file)
   if file =~ /.erb$/
     puts "generating ~/.#{file.sub('.erb', '')}"
     File.open(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"), 'w') do |new_file|
