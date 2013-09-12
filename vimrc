@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " Bundles:
@@ -20,6 +20,7 @@ Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-fugitive"
 Bundle "tComment"
 Bundle "Indent-Guides"
+Bundle "Bling/vim-airline"
 "Bundle "Lokaltog/vim-superstatus" broken on Windows
 Bundle "Lokaltog/vim-easymotion"
 "Bundle "fholgado/minibufexpl.vim"
@@ -164,6 +165,8 @@ autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
 autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab smartindent
 
 autocmd FileType d set expandtab
+autocmd FileType d set list
+autocmd FileType d set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 augroup filetype
     au! BufRead,BufNewFile *.proto setfiletype proto
