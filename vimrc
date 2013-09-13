@@ -21,7 +21,10 @@ Bundle "tpope/vim-fugitive"
 Bundle "tComment"
 Bundle "Indent-Guides"
 Bundle "Bling/vim-airline"
-"Bundle "Lokaltog/vim-superstatus" broken on Windows
+Bundle "Hackerpilot/DCD", {'rtp': 'editors/vim'}
+if has("win32") || has("win64")
+    let g:dcd_importPath=['C:\D\dmd2\src\phobos','C:\D\dmd2\src\druntime\import']
+endif
 Bundle "Lokaltog/vim-easymotion"
 "Bundle "fholgado/minibufexpl.vim"
 "Bundle "L9"
