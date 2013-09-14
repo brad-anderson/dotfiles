@@ -10,30 +10,63 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-" Bundles:
+" Bundles
 Bundle "Wombat"
-Bundle "scrooloose/nerdtree"
-Bundle "snipMate"
+Bundle "chriskempson/base16-vim"
 Bundle "python.vim"
+Bundle "JesseKPhillips/d.vim"
+Bundle "chrisbra/csv.vim"
+Bundle "RelOps"
+
+" F3
+Bundle "scrooloose/nerdtree"
+
+" F2 or Ctrl-P
+Bundle "kien/ctrlp.vim"
+
+" Change surrounding character (e.g., cs([ )
 Bundle "tpope/vim-surround"
+
+" . repeat support for tpope plugins
 Bundle "tpope/vim-repeat"
+
+" git in vim
 Bundle "tpope/vim-fugitive"
-Bundle "tComment"
+
+" Easily comment, uncommment (e.g., gcc)
+Bundle "tomtom/tcomment_vim"
+
+" Get around quickly, <leader><leader>{f,w,etc.}
+Bundle "Lokaltog/vim-easymotion"
+
+" Snippets (e.g., for<tab>)
+Bundle "msanders/snipmate.vim"
+
+" Show indentation guidelines F4 (<leader>ig)
 Bundle "Indent-Guides"
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
+Bundle "airblade/vim-gitgutter"
+let g:gitgutter_realtime = 0 " realtime is buggy for me
+
 Bundle "Bling/vim-airline"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+if has("gui_running")
+    let g:airline_powerline_fonts = 1
+endif
+
+
 Bundle "Hackerpilot/DCD", {'rtp': 'editors/vim'}
 if has("win32") || has("win64")
     let g:dcd_importPath=['C:\D\dmd2\src\phobos','C:\D\dmd2\src\druntime\import']
 endif
-Bundle "Lokaltog/vim-easymotion"
-"Bundle "fholgado/minibufexpl.vim"
-"Bundle "L9"
-"Bundle "FuzzyFinder"
-"Bundle "rails.vim"
-"Bundle "ack.vim"
-"Bundle "git://git.wincent.com/command-t.git"
-" ...
 
+
+" Better leader
+let mapleader=","
+nnoremap ; :
 
 
 " Quickly edit/reload the vimrc file
@@ -75,7 +108,9 @@ set visualbell      " don't beep
 set noerrorbells    " don't beep
 
 set nobackup        " git is better
-"set directory=$temp " use system temporary directory for swap files
+set noswapfile      " risky business
+"set directory=$temp " use system temporary directory for swap files (never
+                     " worked well for me
 
 set laststatus=2    " always show the last status bar
 
@@ -88,6 +123,24 @@ set wildmenu
 
 " show a list when pressing tab and complete first full match
 set wildmode=list:full
+
+
+" Open help in a new tab rather than a small split
+augroup HelpInTabs
+    autocmd!
+    autocmd BufEnter  *.txt   call HelpInNewTab()
+augroup END
+
+function! HelpInNewTab ()
+    if &buftype == 'help'
+        "Convert the help window to a tab...
+        execute "normal \<C-W>T"
+    endif
+endfunction
+
+
+" Use Ctrl-Space for omnicompletion
+imap <c-space> <c-x><c-o>
 
 
 " enable mode lines (the lines that tweak vim for that file)
@@ -110,7 +163,9 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " gui or terminals with 256 can use the color scheme
 if &t_Co >= 256 || has("gui_running")
+    set background=dark
     color wombat
+    "colorscheme base16-default
 endif
 
 " gui or terminals with color can use syntax highlighing
@@ -118,37 +173,18 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
+set encoding=utf-8
 if has("gui_running")
     set guioptions-=m " hide menu
     set guioptions-=T " hide toolbar
     set columns=120
     set lines=40
     if has("win32") || has("win64")
-        set guifont=Consolas:h9
+        set guifont=Sauce\ Code\ Powerline:h9
     else
         set guifont=Consolas\ 9
     endif
 endif
-
-
-" Status line
-hi User1 guifg=#eea040 guibg=#1a1a1a
-hi User2 guifg=#dd3333 guibg=#1a1a1a
-hi User3 guifg=#ff66ff guibg=#1a1a1a
-hi User4 guifg=#a0ee40 guibg=#1a1a1a
-hi User5 guifg=#eeee40 guibg=#1a1a1a
-set statusline=
-set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%5*%{&ff}%*            "file format
-set statusline +=%3*%y%*                "file type
-set statusline +=%4*\ %<%f%*            "path
-set statusline +=%1*\ %{fugitive#statusline()}%*
-set statusline +=%2*%m%*                "modified flag
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*               "total lines
-set statusline +=%1*%4c\ %*             "column number
-set statusline +=%2*0x%04B\ %*          "character under cursor
-
 
 
 filetype on
@@ -158,9 +194,9 @@ filetype indent on
 
 autocmd FileType python set expandtab
 
-" show whitespace characters in python
-autocmd FileType python set list
-autocmd FileType python set listchars=tab:>.,trail:.,extends:#,nbsp:.
+" show whitespace characters by default everywhere
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 
 autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
@@ -168,8 +204,6 @@ autocmd FileType html,xml set tabstop=2 shiftwidth=2 expandtab smartindent
 autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab smartindent
 
 autocmd FileType d set expandtab
-autocmd FileType d set list
-autocmd FileType d set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 augroup filetype
     au! BufRead,BufNewFile *.proto setfiletype proto
@@ -187,6 +221,8 @@ nmap Q gqap
 nnoremap j gj
 nnoremap k gk
 
+set virtualedit=block
+
 
 " easier window navigation Ctrl-h rather than Ctrl-w Ctrl-h, etc.
 map <C-h> <C-w>h
@@ -198,8 +234,17 @@ map <C-l> <C-w>l
 " clear the highlighted searches easier
 nmap <silent> <leader>/ : let @/=""<CR>
 
+" Map spacebar to write the buffer to disk
+nnoremap <Space> :w<CR>
+
+" CtrlP
+map <F2> :CtrlP<CR>
+
 " NERDTree
-map <F2> :NERDTreeToggle<CR>
+map <F3> :NERDTreeToggle<CR>
+
+" Ident=Guides
+map <F4> <leader>ig
 
 " prevent pasting over from filling register
 " I haven't found how to hide this function (yet)
