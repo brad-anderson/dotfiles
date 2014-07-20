@@ -3,54 +3,55 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" Bundles
-Bundle "Wombat"
-Bundle "chriskempson/base16-vim"
-Bundle "python.vim"
-Bundle "JesseKPhillips/d.vim"
-Bundle "chrisbra/csv.vim"
-Bundle "RelOps"
+" Plugins
+Plugin 'Wombat'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
+Plugin 'python.vim'
+Plugin 'JesseKPhillips/d.vim'
+Plugin 'chrisbra/csv.vim'
+Plugin 'RelOps'
 
 " F3
-Bundle "scrooloose/nerdtree"
+Plugin 'scrooloose/nerdtree'
 
 " F2 or Ctrl-P
-Bundle "kien/ctrlp.vim"
+Plugin 'kien/ctrlp.vim'
 
 " Change surrounding character (e.g., cs([ )
-Bundle "tpope/vim-surround"
+Plugin 'tpope/vim-surround'
 
 " . repeat support for tpope plugins
-Bundle "tpope/vim-repeat"
+Plugin 'tpope/vim-repeat'
 
 " git in vim
-Bundle "tpope/vim-fugitive"
+Plugin 'tpope/vim-fugitive'
 
 " Easily comment, uncommment (e.g., gcc)
-Bundle "tomtom/tcomment_vim"
+Plugin 'tomtom/tcomment_vim'
 
 " Get around quickly, <leader><leader>{f,w,etc.}
-Bundle "Lokaltog/vim-easymotion"
+Plugin 'Lokaltog/vim-easymotion'
 
 " Snippets (e.g., for<tab>)
-Bundle "msanders/snipmate.vim"
+Plugin 'msanders/snipmate.vim'
 
 " Show indentation guidelines F4 (<leader>ig)
-Bundle "Indent-Guides"
+Plugin 'Indent-Guides'
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
-Bundle "airblade/vim-gitgutter"
+Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_realtime = 0 " realtime is buggy for me
 
-Bundle "Bling/vim-airline"
+Plugin 'Bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 if has("gui_running")
@@ -58,10 +59,13 @@ if has("gui_running")
 endif
 
 
-Bundle "Hackerpilot/DCD", {'rtp': 'editors/vim'}
+Plugin 'Hackerpilot/DCD', {'rtp': 'editors/vim'}
 if has("win32") || has("win64")
     let g:dcd_importPath=['C:\D\dmd2\src\phobos','C:\D\dmd2\src\druntime\import']
 endif
+
+call vundle#end()
+filetype plugin indent on
 
 
 " Better leader
@@ -164,7 +168,8 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " gui or terminals with 256 can use the color scheme
 if &t_Co >= 256 || has("gui_running")
     set background=dark
-    color wombat
+    " color Wombat
+    colorscheme solarized
     "colorscheme base16-default
 endif
 
@@ -187,9 +192,6 @@ if has("gui_running")
 endif
 
 
-filetype on
-filetype plugin on
-filetype indent on
 
 
 autocmd FileType python set expandtab
