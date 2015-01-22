@@ -188,6 +188,8 @@ if has("gui_running")
     set lines=40
     if has("win32") || has("win64")
         set guifont=Sauce\ Code\ Powerline:h9
+    elseif has("mac")
+        set guifont=Sauce\ Code\ Powerline:h11
     else
         set guifont=Consolas\ 9
     endif
