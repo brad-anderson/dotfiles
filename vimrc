@@ -211,6 +211,8 @@ autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab smartindent
 
 autocmd FileType d set expandtab
 
+autocmd FileType cmake set tabstop=2 shiftwidth=2 expandtab smartindent
+
 augroup filetype
     au! BufRead,BufNewFile *.proto setfiletype proto
 augroup end
