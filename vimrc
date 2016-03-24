@@ -1,72 +1,63 @@
 " No vi compatibility. This must be first, because it changes other options as
 " side effect
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-" let Vundle manage Vundle
-" required!
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/vimfiles/plugged')
 
 " Plugins
-Plugin 'Wombat'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/base16-vim'
-Plugin 'python.vim'
-Plugin 'JesseKPhillips/d.vim'
-Plugin 'chrisbra/csv.vim'
-Plugin 'RelOps'
+Plug 'Wombat'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+"Plug 'python.vim'
+Plug 'JesseKPhillips/d.vim'
+Plug 'chrisbra/csv.vim'
+"Plug 'RelOps'
 
 " F3
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " F2 or Ctrl-P
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 " Change surrounding character (e.g., cs([ )
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " . repeat support for tpope plugins
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
 " git in vim
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Easily comment, uncommment (e.g., gcc)
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
 " Get around quickly, <leader><leader>{f,w,etc.}
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 " Snippets (e.g., for<tab>)
-Plugin 'msanders/snipmate.vim'
+Plug 'msanders/snipmate.vim'
 
-" Show indentation guidelines F4 (<leader>ig)
-Plugin 'Indent-Guides'
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
+Plug 'Bling/vim-airline'
+Plug 'idanarye/vim-dutyl'
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'Shougo/vimproc.vim'
 
-Plugin 'airblade/vim-gitgutter'
-let g:gitgutter_realtime = 0 " realtime is buggy for me
+call plug#end()
 
-Plugin 'Bling/vim-airline'
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 if has("gui_running")
     let g:airline_powerline_fonts = 1
 endif
 
-
-Plugin 'Hackerpilot/DCD', {'rtp': 'editors/vim'}
 if has("win32") || has("win64")
-    let g:dcd_importPath=['C:\D\dmd2\src\phobos','C:\D\dmd2\src\druntime\import']
+    let g:dutyl_stdImportPaths=['C:\D\dmd2\src\phobos', 'C:\D\dmd2\src\druntime\import']
+    call dutyl#register#tool('dcd-client', expand('$APPDATA') . '\dub\packages\dcd-0.8.0\dcd-client.exe')
+    call dutyl#register#tool('dcd-server', expand('$APPDATA') . '\dub\packages\dcd-0.8.0\dcd-server.exe')
+    call dutyl#register#tool('dfmt', expand('$APPDATA') . '\dub\packages\dfmt-0.4.5\dfmt.exe')
 endif
 
-Plugin 'editorconfig/editorconfig-vim'
-
-call vundle#end()
 filetype plugin indent on
 
 
@@ -112,6 +103,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class    " ignore some files for tab
 set title           " change the terminal's title
 set visualbell      " don't beep
 set noerrorbells    " don't beep
+set t_vb=           " don't flash
 
 set nobackup        " git is better
 set noswapfile      " risky business
@@ -170,8 +162,8 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " gui or terminals with 256 can use the color scheme
 if &t_Co >= 256 || has("gui_running")
     set background=dark
-    " color Wombat
-    colorscheme solarized
+    color Wombat
+    "colorscheme solarized
     "colorscheme base16-default
 endif
 
@@ -223,6 +215,8 @@ vmap Q gq
 
 " format the current paragraph
 nmap Q gqap
+
+nmap <A-space> ==
 
 " go up/down to the next visible line rather than the next logical line (when
 " line wrapping is on)
