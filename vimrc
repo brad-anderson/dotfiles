@@ -46,7 +46,7 @@ call plug#end()
 
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#enabled = 0 " Errors when vim runs under git bash on Windows
 if has("gui_running")
     let g:airline_powerline_fonts = 1
 endif
