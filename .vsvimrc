@@ -1,0 +1,24 @@
+set tabstop=2       " a tab is four spaces wide
+set backspace=indent,eol,start  " allow backspacing over everything in insert
+                                "   mode
+set autoindent      " always set autoindenting on
+set number          " show line numbers
+set shiftwidth=2    " number of spaces to use for autoindenting
+set ignorecase      " ignore case when searching
+set smartcase       " ignore case if search pattern is all lowercase, case-
+                    "   sensitive otherwise
+set hlsearch        " highlight search terms
+set incsearch       " show search matches as I type
+
+set scrolloff=5     " always show five lines below/above where the cursor is
+
+set history=1000    " remember more commands and search history
+set laststatus=2    " always show the last status bar
+
+" go up/down to the next visible line rather than the next logical line (when
+" line wrapping is on)
+nnoremap j gj
+nnoremap k gk
+
+" clear the highlighted searches easier
+nmap <silent> <leader>/ : let @/=""<CR>
